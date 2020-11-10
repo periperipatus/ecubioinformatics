@@ -1,8 +1,8 @@
-#UNC Bioinformatics Course
+# UNC Bioinformatics Course
 
 Welcome! Here you will find all the fun content
 
-#heading
+# heading
 
 ```R
 test<- read.csv("table.csv")
