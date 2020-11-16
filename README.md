@@ -18,3 +18,7 @@ or like this ```grep "MELK" genome.gtf```
 ### this is probably more like what it is
 blah blah
 ```
+
+```bash
+echo 'MELK'
+```
