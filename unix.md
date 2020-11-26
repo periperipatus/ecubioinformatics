@@ -1,0 +1,54 @@
+# Introduction to Unix
+
+This tutorial is based on one by Dr. Nicholas Navin (MD Anderson Cancer Center, University of Texas). I’ve added a few minor things here and there based on what I think is most useful.
+
+
+### Things to remember:
+* Pay attention to the helpful hints here and there. They are… helpful
+* Google is also helpful (seriously, use it when you are stumped, I do it all the time) 
+* For any command, you can always ask for information about the usage and options using the inbuilt manual (man) page from the commandline. E.g.,: ```man grep``` or ```grep --help```
+* Unix is CasE SensiTive
+* It is very easy to overwrite files if you name them the same thing. (You will not be asked “are you sure”?)
+* Keep your directories organized or things spiral out of control quickly.
+* A good text editor is nice to have (on macs, TextWrangler is great, and free). Unix geeks like Unix text editors nano and vi that can be run in Unix. We are not going to cover those here.
+* Even though I’ll show you how to transfer files using the command line, GUI ftp software are convenient (Cyberduck for macs, Filezilla, I think works on windows). (Again, a true Unix geek would frown on such things)
+* you can use up and down arrows to scroll through previous commands 
+* You can use ```tab``` to auto-complete names that are already in the system (This is useful for long filenames!)
+
+## Introduction to Servers
+
+Open your Mac Terminal or Linux WSL on Windows.
+
+We are going to log into the university server using ```ssh```, which allows you to log into a remote computer. Please refer to your emails for the IP address and password. 
+
+```bash
+ssh ngsclass@<IP.ADDRESS>
+```
+
+You will be prompted for a password, type it in and click enter.
+
+To determine the directory you are in use ```pwd```
+
+You can list the directory contents using ```ls```. There will be many files in the home directory.
+
+Now, make a directory for you for the duration of the course using ```mkdir```. Ideally this will be your last name, and should not match any folders already existing in the home directory. I have made one for myself and called it ```Bolton/```
+
+For example:
+
+```bash
+mkdir Xena
+```
+
+now move into the directory you just made (note: don't just copy Xena)
+
+```bash
+cd Xena
+ls
+```
+
+You've made an empty directory!
+
+
+
+
+

@@ -81,8 +81,7 @@ Tomorrow we will analyse the results from the full dataset.
 
 If you are working on species with a genome, you can also do splice aware mapping.
 Some commonly used splice-aware aligners are [STAR](https://github.com/alexdobin/STAR) and [HISAT2](http://daehwankimlab.github.io/hisat2/about/).
-Here we are going to use STAR (Spliced Transcripts Alignment to a Reference).
-We are going to map some RNAseq data from Pipra filicauda to the genome.
+Here we are going to use STAR (Spliced Transcripts Alignment to a Reference) to map our Manacus reads to the reference genome (Yes, I lied above, we have a genome assembly). 
 
 
 Just like ```kallisto```, the ```STAR``` aligner needs to make a genome index so that it can efficiently access the genome. 
@@ -110,9 +109,9 @@ STAR --runThreadN 50 \
 
 #this took about 20 min
 ```
-
-**Question 2:** What does the ```--sjdbOverhang``` argument do?
-**Question 3:** What do the \ do in the code?
+**Question 2:** If you wanted to download the transcripts for a transcriptome based quantification (like with Kallisto) which file would you download from GenBank?
+**Question 3:** What does the ```--sjdbOverhang``` argument do?
+**Question 4:** What do the \ do in the code?
 
 Now, you can run one of the trimmed fastqs from before.
 
@@ -130,7 +129,7 @@ STAR --genomeDir ~/Bioinformatics_Workshop/mavi_genome/mavi_index/ \
 #took approximately 2  minutes. 
 ```
 
-**Question 4:** What do the different arguments do in this? refer to the STAR manual
+**Question 5:** What do the different arguments do in this? refer to the STAR manual
 
 
 Now, let's move into our ```alignments/``` folder and look at what we've produced. There should be a number of files there including those ending in ```Aligned.sortedByCoord.out.bam```, ```Log.final.out``` and ```PerGene.out.tab```
@@ -143,12 +142,12 @@ samtools view 7_MAVI_SH_JB1Aligned.sortedByCoord.out.bam | head
 ```
 This command shows the first few lines of the alignment section of the file. if you want to view the header you need to use the ```-h``` flag.
 
-**Question 5:** What do the first 5 columns of the alignment tell you?
+**Question 6:** What do the first 5 columns of the alignment tell you?
 
 Now, let's open the ```Log.final.out``` file. 
 
-**Question 6:** What is the percent of unmapped, multi-mapped and uniquely mapped reads? What could affect these numbers?
-**Question 7:** What is the Number of splices? What does this mean?
+**Question 7:** What is the percent of unmapped, multi-mapped and uniquely mapped reads? What could affect these numbers?
+**Question 8:** What is the Number of splices? What does this mean?
 
 Now let's have a look at the contents of  ```ReadsPerGene.out.tab```
 
@@ -158,11 +157,14 @@ less -S 7_MAVI_SH_JB1ReadsPerGene.out.tab
 
 hit ```q``` to exit.
 
-**Question 8:** What does this file tell us? What do the three columns mean?
+**Question 9:** What does this file tell us? What do the three columns mean?
 
 Don't worry that there are a lot of zeros - don't forget you're using a truncated fastq file. The differential expression example tomorrow we will use a full dataset. 
 
+**Question 10:** Other aligners, such as ```HISAT2``` do not provide any counts for reads against the gene models in the reference. How would you go about getting these counts?
+
+
 # Your Assignment
 
-Try your new knowledge on the dataset provided to you.
+Try your new knowledge on the dataset provided to you. 
 
