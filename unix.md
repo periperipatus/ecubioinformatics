@@ -2,17 +2,16 @@
 
 This tutorial is based on one by Dr. Nicholas Navin (MD Anderson Cancer Center, University of Texas). I’ve added a few minor things here and there based on what I think is most useful.
 
-#Table of Contents
+# Table of Contents
 
-<!--ts-->
-      *[How To](#how-to)
-      *[Things to remember:](#things-to-remember)
-      * [Introduction to Servers](#introduction-to-servers)
-         * [Directories &amp; some basic unix terminology.](#directories--some-basic-unix-terminology)
-            * [mkdir &amp; cd](#mkdir--cd)
-         * [Jobs](#jobs)
-         * [Doing things with files](#doing-things-with-files)
-<!--te-->
+*[How To](#how-to)
+*[Things to remember:](#things-to-remember)
+* [Introduction to Servers](#introduction-to-servers)
+	* [Directories &amp; some basic unix terminology.](#directories--some-basic-unix-terminology)
+		* [mkdir &amp; cd](#mkdir--cd)
+	* [Jobs](#jobs)
+	* [Doing things with files](#doing-things-with-files)
+
 
 ### How To
 
