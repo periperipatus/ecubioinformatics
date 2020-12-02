@@ -5,14 +5,14 @@ This tutorial is based on one by Dr. Nicholas Navin (MD Anderson Cancer Center, 
 # Table of Contents
 
 * [How To](#how-to)
-* [Things to remember:](#things-to-remember)
+	* [Things to remember:](#things-to-remember)
 * [Introduction to Unix](#introduction-to-servers)
 	* [Directories &amp; some basic unix terminology.](#directories--some-basic-unix-terminology)
 	* [Jobs](#jobs)
 	* [Doing things with files](#doing-things-with-files)
 
 
-### How To
+## How To
 
 If you are on Windows, you need to open your ```WSL``` (e.g. Ubuntu)... Or if you have selected  ```PuTTY``` (please don't) you'll need to login to the server first. 
 
@@ -211,7 +211,7 @@ Let's do some more basic commands using some genome data. We can download a .zip
 ```bash
 curl <GET URL FROM YOUR INSTRUCTOR> -o Archive.zip -J -L -k
 ```
-
+[/]:# Note that 
 You should see a .zip file in your directory now. You need to unzip it
 
 ```bash
@@ -222,6 +222,10 @@ ls -l
 We have some genome related files in this folder, including a gzipped **fasta** file. Fasta files are often indicated with the extensions: ```.fa``` ```.fna``` ```.fasta```
 ```gzip``` is another compression algorithm like `zip`.  
 
-
+<br/>
+<div align="right">
+    <b><a href="#----">^ back to top</a></b>
+</div>
+<br/>
 
 
