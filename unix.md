@@ -2,10 +2,10 @@
 
 This tutorial is based on one by Dr. Nicholas Navin (MD Anderson Cancer Center, University of Texas). I’ve added a few minor things here and there based on what I think is most useful.
 
-Table of Contents
-=================
+#Table of Contents
+
 <!--ts-->
-      *[How To:](#how-to)
+      *[How To](#how-to)
       *[Things to remember:](#things-to-remember)
       * [Introduction to Servers](#introduction-to-servers)
          * [Directories &amp; some basic unix terminology.](#directories--some-basic-unix-terminology)
@@ -14,7 +14,7 @@ Table of Contents
          * [Doing things with files](#doing-things-with-files)
 <!--te-->
 
-### How To:
+### How To
 
 If you are on Windows, you need to open your ```WSL``` (e.g. Ubuntu)... Or if you have selected  ```PuTTY``` (please don't) you'll need to login to the server first. 
 
