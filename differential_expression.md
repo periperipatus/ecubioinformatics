@@ -50,7 +50,7 @@ samples<- samples[order(samples$sample),] ## make sure the sample names are in t
 Now, let's make a named vector that contains the path to all the files we want to read in.
 
 ```r
-files<- file.path("kallisto_results", samples$sample, "abundance.h5")
+files<- file.path("bioinformatics_data","kallisto_results", samples$sample, "abundance.h5")
 names(files) <- samples$sample
 ```
 
@@ -126,7 +126,7 @@ plotMA(res)
 Now, let's export these data for later.
 
 ```r
-write.csv(res, file="results_DE_transcripts.csv", row.names=TRUE)
+write.csv(res, file="MAVI_results_DE_transcripts.csv", row.names=TRUE)
 ```
 
 

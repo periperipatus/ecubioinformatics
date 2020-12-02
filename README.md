@@ -9,7 +9,7 @@ Please ensure the following programs are installed on your desktop **prior to co
 * R https://www.r-project.org/
 * R-Studio https://rstudio.com/
 * Cisco AnyConnect VPN https://ecu.teamdynamix.com/TDClient/1409/Portal/Requests/ServiceDet?ID=11945 & https://itcs.ecu.edu/2020/03/16/working-remotely/
-* Decent text editor software, such as TextWrangler (for Mac) or Notepad++ (for Windows).
+* Decent text editor software, such as [TextWrangler/BBEdit](https://www.barebones.com/products/textwrangler/) (for Mac) or [Notepad++](https://notepad-plus-plus.org/downloads/) (for Windows).
 
 Some method for accessing the ECU computers via unix commandline is required (see below).
 
@@ -53,7 +53,9 @@ Each presentation should include the following:
 * Methods: e.g. what techniques did you use to quantify your reads? What genome did you use? What variables did you compare? What model form did use use to quantify differential gene expression for those variables? 
 * Results: 
 	* Number of reads in experiment
+	* Read Quality?
 	* Number of reads counted/mapped
+	* Any samples removed? Why?
 	* Number of genes differentially expressed for each comparison
 	* PCA plot colour coded relevant to your variables
 	* Any GO enrichment
