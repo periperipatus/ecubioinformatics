@@ -2,6 +2,18 @@
 
 This tutorial is based on one by Dr. Nicholas Navin (MD Anderson Cancer Center, University of Texas). I’ve added a few minor things here and there based on what I think is most useful.
 
+Table of Contents
+=================
+<!--ts-->
+      *[How To:](#how-to)
+      *[Things to remember:](#things-to-remember)
+      * [Introduction to Servers](#introduction-to-servers)
+         * [Directories &amp; some basic unix terminology.](#directories--some-basic-unix-terminology)
+            * [mkdir &amp; cd](#mkdir--cd)
+         * [Jobs](#jobs)
+         * [Doing things with files](#doing-things-with-files)
+<!--te-->
+
 ### How To:
 
 If you are on Windows, you need to open your ```WSL``` (e.g. Ubuntu)... Or if you have selected  ```PuTTY``` (please don't) you'll need to login to the server first. 
@@ -21,13 +33,9 @@ If you are on Mac you'll just need to open your ```Terminal```
 * You can use ```tab``` to auto-complete names that are already in the system (This is useful for long filenames!)
 
 
-Table of Contents
-=================
-      * [Introduction to Servers](#introduction-to-servers)
-         * [Directories &amp; some basic unix terminology.](#directories--some-basic-unix-terminology)
-            * [mkdir &amp; cd](#mkdir--cd)
-         * [Jobs](#jobs)
-         * [Doing things with files](#doing-things-with-files)
+<!-- toc -->
+
+<!-- tocstop -->
 
 ## Introduction to Servers
 
