@@ -1,14 +1,13 @@
 # Introduction to Unix
 
-This tutorial is based on one by Dr. Nicholas Navin (MD Anderson Cancer Center, University of Texas). I’ve added a few minor things here and there based on what I think is most useful.
+This tutorial is based on one by Dr. Nicholas Navin (MD Anderson Cancer Center, University of Texas), and another from Prof. Roger Butlin at University of Sheffield [here](https://openwetware.org/wiki/Butlin:Unix_for_Bioinformatics_-_basic_tutorial)
 
 # Table of Contents
 
-*[How To](#how-to)
-*[Things to remember:](#things-to-remember)
-* [Introduction to Servers](#introduction-to-servers)
+* [How To](#how-to)
+* [Things to remember:](#things-to-remember)
+* [Introduction to Unix](#introduction-to-servers)
 	* [Directories &amp; some basic unix terminology.](#directories--some-basic-unix-terminology)
-		* [mkdir &amp; cd](#mkdir--cd)
 	* [Jobs](#jobs)
 	* [Doing things with files](#doing-things-with-files)
 
@@ -32,11 +31,7 @@ If you are on Mac you'll just need to open your ```Terminal```
 * You can use ```tab``` to auto-complete names that are already in the system (This is useful for long filenames!)
 
 
-<!-- toc -->
-
-<!-- tocstop -->
-
-## Introduction to Servers
+## Introduction to Unix
 
 Open your Mac Terminal or Linux WSL on Windows.
 
@@ -64,7 +59,7 @@ The ```ls``` **command** also has a number of **arguments** that you can apply t
 
 **Question:** What does ```ls -l``` do? What do the different columns mean?
 
-The output from a command is called **Standard Out** or **stdout**, and is usually output on your screen.
+The output from a command is called **Standard Out** or ```stdout```, and is usually output on your screen.
 
 #### mkdir & cd 
 
@@ -106,7 +101,7 @@ As you have noticed this runs the process in the “foreground” which can prev
 sleep 260 &
 ```
 
-If you start a job in the **foreground**  (without using ```&```) and want to stop it you can kill it completely using ```ctrl+C``` or suspend it using ```ctrl+Z```.
+If you start a job in the **foreground**  (without using ```&```) and want to stop it you can kill it completely using ```ctrl+c``` or suspend it using ```ctrl+z```.
 
 Let's see what jobs your shell (session) has started. 
 
@@ -139,7 +134,7 @@ touch enzyme.txt
 you can also make multiple files at once
 
 ```bash
- touch test test1 test12 test123 Test test.file test.file.txt
+ touch test test1 test12 test123 test.file test.file.txt
 ```
 
 Note that you cannot make a filename with a space in it (it will think it is two separate files). Safe characters for use in filenames are ```a-zA-Z0-9._```
@@ -173,15 +168,59 @@ rmdir enzyme.txt
 
 you may also use ```rm -r```for a full directory or ```rm -d``` removes only empty directories
 
+we can also use **wildcard** ```*``` to search for files that we created
+
+```bash
+ls -l test*
+```
+now remove all test files using ```rm``` and the wildcard.
+
+#### echo, file contents and operators.
+
+the ```echo``` command is useful for doing all sort of things - particularly in sanity checks later when you build loops.
+
+```bash
+echo foo
+```
+
+By default, ```echo``` prints to ```stdout```.  You can use the ```>``` operator to redirect the content to a file.
+
+```bash
+echo foo > test1.txt
+echo bar > test2.txt
+
+cat test1.txt test2.txt
+```
+
+Notice, that the ```cat``` command has printed the contents of ```test2.txt``` right after the contents of ```test1.txt```. In other words it has con```cat```enated the two files.
+
+The ```>>``` operator can be used to append content to an existing file.
+
+```bash
+echo "I am some text" >> test1.txt
+cat test1.txt
+```
+
+Note that if you already have content in a file and you try to use ```>``` you will lose all previous content. **Try it**
 
 
+#### More on files
 
+Let's do some more basic commands using some genome data. We can download a .zip file that has been pre-prepared using ```wget``` or ```curl```
 
+```bash
+curl <GET URL FROM YOUR INSTRUCTOR> -o Archive.zip -J -L -k
+```
 
+You should see a .zip file in your directory now. You need to unzip it
 
+```bash
+unzip Archive.zip
+ls -l
+```
 
-
-
+We have some genome related files in this folder, including a gzipped **fasta** file. Fasta files are often indicated with the extensions: ```.fa``` ```.fna``` ```.fasta```
+```gzip``` is another compression algorithm like `zip`.  
 
 
 
