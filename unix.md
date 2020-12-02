@@ -211,7 +211,7 @@ Let's do some more basic commands using some genome data. We can download a .zip
 ```bash
 curl <GET URL FROM YOUR INSTRUCTOR> -o Archive.zip -J -L -k
 ```
-[/]:# Note that 
+[/]:# I am just using the link that was provided with the original .docx file. No idea where that comes from. 
 You should see a .zip file in your directory now. You need to unzip it
 
 ```bash
@@ -224,7 +224,7 @@ We have some genome related files in this folder, including a gzipped **fasta** 
 
 <br/>
 <div align="right">
-    <b><a href="#----">^ back to top</a></b>
+    <b><a href="#table-of-contents">^ back to TOC</a></b>
 </div>
 <br/>
 
