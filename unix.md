@@ -17,7 +17,7 @@ Please review all of this, as we will be calling on some of the skills here in t
 	* [File Manipulation](#file-manipulation)
 * [Aliases](#aliases)
 * [Variables](#variables)
-* [Shell Scripts)(#shell-scripts)
+* [Shell Scripts](#shell-scripts)
 * [nohup](#nohup)
 * [For Loops](#for-loops)
 
