@@ -72,6 +72,11 @@ Student pairs are encouraged to collaborate and troubleshoot tutorial problems t
 ## Schedule
 See Excel spreadsheet. Note that tutorials will not take the full length of time allotted in the calendar. 
 
+<br/>
+<div align="right">
+    <b><a href="#table-of-contents">^ back to TOC</a></b>
+</div>
+<br/>
 
 # Assignments
 
