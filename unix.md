@@ -2,8 +2,14 @@
 
 This tutorial is based on one by Dr Nicholas Navin (MD Anderson Cancer Center, University of Texas), and another from Prof. Roger Butlin at University of Sheffield [here](https://openwetware.org/wiki/Butlin:Unix_for_Bioinformatics_-_basic_tutorial), as well as some additional material added by Dr Peri Bolton and Prof Chris Balakrishnan.
 
+# Learning Objectives
+
 The idea is for you to familiarise yourself with basic unix and some things we commonly use in bioinformatics. This will hopefully give you a solid foundation for the rest of this course, and for your future in genomic analysis. 
 Please review all of this, as we will be calling on some of the skills here in the upcoming lessons.
+
+* Basic usage of unix commandline
+* Basic ability to troubleshoot code
+* Ability to write basic loops
 
 # Table of Contents
 
@@ -647,3 +653,9 @@ Run it!
 **Question 13:** How would you write a script that counts the number of sequences in each of the fasta files we downloaded today?
 
 Phew! That was a lot! 
+
+<br/>
+<div align="right">
+    <b><a href="#table-of-contents">^ back to TOC</a></b>
+</div>
+<br/>

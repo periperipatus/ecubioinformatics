@@ -2,6 +2,9 @@
 
 Welcome! Please refer to the Course Outline and Course Schedule for more information on delivery and assessment.
 
+Please **DO NOT jump ahead in the tutorials**, ONLY do the work assigned on the day in the schedule as I will make changes throughout the course to best fit our needs. 
+
+
 # Software requirements
 
 Please ensure the following programs are installed on your desktop **prior to commencing the class**. 
@@ -10,6 +13,7 @@ Please ensure the following programs are installed on your desktop **prior to co
 * R-Studio https://rstudio.com/
 * Cisco AnyConnect VPN https://ecu.teamdynamix.com/TDClient/1409/Portal/Requests/ServiceDet?ID=11945 & https://itcs.ecu.edu/2020/03/16/working-remotely/
 * Decent text editor software, such as [TextWrangler/BBEdit](https://www.barebones.com/products/textwrangler/) (for Mac) or [Notepad++](https://notepad-plus-plus.org/downloads/) (for Windows).
+* Slack https://slack.com/ You can use this on the web browser, OR you can download it. The majority of course communications will be through Slack.
 
 Some method for accessing the ECU computers via unix commandline is required (see below).
 
@@ -27,17 +31,11 @@ You already have access to unix scripting through your OSX terminal. You can sea
 
 ## Required R packages 
 
-The following packages need to be installed on R on your desktop. These can be installed along the duration of the course as well.
+The following packages need to be installed on R on your desktop. Everything else can be installed along the way.
 
 
 ```r
 install.packages("BiocManager")
-BiocManager::install("DESeq2")
-BiocManager::install("rhdf5")
-BiocManager::install("tximport")
-BiocManager::install("vsn")
-install.packages("pheatmap")
-install.packages("RColorBrewer")
 ```
 
 

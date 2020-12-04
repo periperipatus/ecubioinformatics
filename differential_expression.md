@@ -27,6 +27,7 @@ Open R Studio on your desktop, and load the following packages into your environ
 BiocManager::install("DESeq2")
 BiocManager::install("rhdf5")
 BiocManager::install("tximport")
+
 library(rhdf5)
 library(tximport) 
 library(DESeq2)
@@ -198,7 +199,7 @@ Now let's see what our transformations have done to the data
 
 
 ```r
-install.packages("vsn")
+BiocManager::install("vsn")
 library(vsn)
 meanSdPlot(assay(dds)[notAllZero,]) #untransformed data
 meanSdPlot(assay(ntd)[notAllZero,])
@@ -219,6 +220,9 @@ For a more flexible and easier PCA plotting you can use an R package like [PCAto
 Now let's plot the data as a heatmap. We can look at the overal difference in gene expression between samples.
 
 ```r
+install.packages("pheatmap")
+install.packages("RColorBrewer")
+
 sampleDists <- dist(t(assay(rld)))
 
 sampleDistMatrix <- as.matrix(sampleDists)
