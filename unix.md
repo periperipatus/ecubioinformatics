@@ -148,6 +148,18 @@ We can see what processes are running using ```ps``` (**process status**)
 
 You should still see ```sleep 260``` on the list of active processes. Use the Process ID (PID) in the first column to kill the process using the command ```kill <PID>```. Replacing everything including the brackets with the PID for the right proces.
 
+
+Another useful command is `htop`. Not all servers have this installed, but it can be.  Run the command and see what it looks like.
+
+`htop` is a live updated and interactive system-monitor and process manager. You can see what other users are doing on there, and how many cores are available, and how much RAM. This is useful for when the server is busy, and you can also use it to extract your PIDs and kill jobs. [Here's](https://linuxtogether.org/htop-command-explanation/) a basic intro to what `htop` shows.
+
+**Question 2:** How many cores does this server have? How much total RAM is there? 
+
+
+
+Other servers will have a job submission system such as `slurm` or `qsub`, which puts jobs into a queue and manages the server resources for the user. We will not get into these here. 
+
+
 Now, let's play with some genome data.
 
 <br/>
@@ -190,7 +202,7 @@ Now you can **remove** the file using ```rm```.  Please be careful with this com
 rm enzyme.txt
 ```
 
-**Question 2:** Look at ```man rm``` page for arguments you can pass to rm. Why might you want to run ```rm -i <FILE>```?
+**Question 3:** Look at ```man rm``` page for arguments you can pass to rm. Why might you want to run ```rm -i <FILE>```?
 
 now, move back to the parent directory for ```bacteria``` (the one with your name on it). 
 
@@ -250,7 +262,7 @@ Let's do some more basic commands using some genome data. We can download a .zip
 ```bash
 curl <GET URL FROM YOUR INSTRUCTOR> -o Archive.zip -J -L -k
 ```
-[/]:# I am just using the link that was provided with the original .docx file. No idea where that comes from. 
+[/]:# I am using a different version of this from what was originally provided in the Texas Tutorial. I am hosting on my Google Drive but won't forever.  
 
 You should see a ```.zip``` file in your directory now. You need to ```unzip``` it
 
@@ -283,7 +295,7 @@ less chr1.fna
 
 you can scroll through the file using your `up` and `down` arrows. To exit you can either press `q` or `ctrl+z`. 
 
-**Question 3:** What does the -S argument do? When might that be useful to you?
+**Question 4:** What does the -S argument do? When might that be useful to you?
 
 You can preview a file using `head` and `tail`.
 
@@ -291,7 +303,7 @@ You can preview a file using `head` and `tail`.
 head -n 25 chr1.fna
 ```
 
-**Question 4:** What does the -n argument do?
+**Question 5:** What does the -n argument do?
 
 You can also ask how many lines there are in a file.
 
@@ -312,7 +324,7 @@ grep "GAATTC" chr1.fna | wc -l
 The pipe `|` takes the **Standard output** or `stdout` from the previous commands, and performs another command on it. In this case, we ran the search, then we used `wc -l` to count the number of instances of our search term.
 We use `-l` because we know that `grep` prints the line that contains our search term. 
 
-**Question 5:**Can you think of a reason why this is NOT the best way to find a restriction enzyme site (hint: think about what might happen at the end of line)?
+**Question 6:**Can you think of a reason why this is NOT the best way to find a restriction enzyme site (hint: think about what might happen at the end of line)?
 
 We can also specify that we want to return everything but the search string. For example, we could count the number of nucleotides in the file.
 
@@ -320,7 +332,7 @@ We can also specify that we want to return everything but the search string. For
 grep -v ">" chr1.fna | wc -c 
 ```
 
-**Question 6:** There is a file called `human_pep.fa`. How many protein sequences are there in this file? How many amino acids are there? Use a redirect to make a file with the names of all the proteins in this file.
+**Question 7:** There is a file called `human_pep.fa`. How many protein sequences are there in this file? How many amino acids are there? Use a redirect to make a file with the names of all the proteins in this file.
 
 <br/>
 <div align="right">
@@ -345,7 +357,7 @@ The format s/pattern1/pattern2/g is used, in which s indicates replace, and g st
 ```bash
 sed 's/T/U/g' ZF_SNCA_cDNA.fa
 ```
-**Question 7:** What is the problem with doing it these ways? How could you avoid this problem? I don't have the answer - time to get googling and see what works!
+**Question 8:** What is the problem with doing it these ways? How could you avoid this problem? I don't have the answer - time to get googling and see what works!
 
 The `sed` command is more powerful than `tr` because it uses *‘regular expressions’*, patterns to match complex patterns and replace text, while the `tr` command is limited to replacing exact characters and words. With `sed` we can also delete patterns in text. Let’s delete all of the A’s in the kras fasta file.
 
@@ -353,7 +365,7 @@ The `sed` command is more powerful than `tr` because it uses *‘regular express
 sed 's/A//g' ZF_SNCA_cDNA.fa
 ```
 
-**Question 8:** How would you use a *regular expression* pattern to replace all lines starting in A with an underscore character in the 'ZF_SNCA_cDNA.fa' file? Don't be afraid to google!
+**Question 9:** How would you use a *regular expression* pattern to replace all lines starting in A with an underscore character in the 'ZF_SNCA_cDNA.fa' file? Don't be afraid to google!
 
 <br/>
 <div align="right">
@@ -412,7 +424,7 @@ Often it will be necessary to extract a subset of columns from a BED file to pro
 cut -f 4 cancer_genes.bed > genes.txt
 ```
 
-**Question 9:** Think back to our lesson yesterday, how might you achieve this in R?
+**Question 10:** Think back to our lesson yesterday, how might you achieve this in R?
 
 **On Your Own** Examine the first lines of the `genes.txt`, to confirm that the 4th column was extracted.
 
@@ -422,7 +434,7 @@ The genes are out of order, let’s **sort** them alphabetically using the `sort
 sort genes.txt
 ```
 
-**Question 10:** Sort them in reverse alphabetical order. You might want to use `man` or google, to discover the various options for `sort`. How do you sort in reverse order?
+**Question 11:** Sort them in reverse alphabetical order. You might want to use `man` or google, to discover the various options for `sort`. How do you sort in reverse order?
 
 
 Now let’s find all the genes in that contain the string ‘RAS‘
@@ -430,7 +442,7 @@ Now let’s find all the genes in that contain the string ‘RAS‘
 grep RAS genes.txt
 ```
 
-**Question 11:** How many genes contain the string RAS ?
+**Question 12:** How many genes contain the string RAS ?
 
 
 Now let’s return to the `cancer_genes.bed` file and use the `head` and `cut` commands to extract the first 10 lines from column 1 and output a file called `column1.txt`
@@ -553,7 +565,7 @@ echo 'echo Hello World' >> shell_script.sh
 The `.sh` file extension is convention to indicate the type of file that it is. just like you can make a text file without `.txt`, but that is not very useful to someone coming in with no memory of what the files are.
 Now use `cat` to look at the contents of your script. 
 
-**Question 12:** Why are there two usages of `echo` in the above commands?
+**Question 13:** Why are there two usages of `echo` in the above commands?
 
 You can run the script with.
 
@@ -650,7 +662,7 @@ done
 
 Run it!
 
-**Question 13:** How would you write a script that counts the number of sequences in each of the fasta files we downloaded today?
+**Question 14:** How would you write a script that counts the number of sequences in each of the fasta files we downloaded today?
 
 Phew! That was a lot! 
 
