@@ -203,7 +203,7 @@ mean_per_day<- apply(infl,2,mean)
 #these functions can be used to read in multiple datasets that have a similar naming structure to a list object
 
 filenames <- list.files(path = "data", pattern = "inflammation-[0-9]{2}.csv", full.names = TRUE)
-data<- lapply(filenames, FUN=read.csv)
+data<- lapply(filenames, FUN=read.csv, header=FALSE)
 
 
 ##### Q 1.7.2 repeat the above question using the second item in the 'data' list #####

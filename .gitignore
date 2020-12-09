@@ -4,3 +4,5 @@ bioinformatics_data/
 *.jpg
 *.zip
 Readings/
+Recordings/
+.Rhistory
