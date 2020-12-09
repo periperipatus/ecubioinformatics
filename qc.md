@@ -64,7 +64,7 @@ Open a new terminal tab, or a new terminal window.
 download the .html file to your your folder for the tutorial.
 
 ```bash
-scp -P 1200 <USERNAME>@<SERVER-IP>:~/<YOUR DIR>/MAVI_read_mapping/7_MAVI_SH_R1_001_fastqc.html ./
+scp -P 1200 <USERNAME>@<SERVER-IP>:~/<YOUR DIR>/MAVI_read_mapping/7_MAVI_SH_F_fastqc.html ./
 ```
 Check the slack for your login and server IP address. 
 
