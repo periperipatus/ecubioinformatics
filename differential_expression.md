@@ -11,9 +11,11 @@ Now, download ```~/<YOUR DIR>/MAVI_samples.txt``` from your directrory,  and the
 
 To do this, open a new terminal window and navigate to to the folder you made for the tutorial.
 
-copy the file and folder across. The example below is for the folder. 
+Copy the file and folder across. The example below is for the folder. 
+
+
 ```bash
-scp -r -P 1200 ngsclass@<IP.ADRESS>:~/<YOURDIR>/kallisto_results/ .
+scp -r -P 1200 ngsclass@<IP.ADRESS>:~/Bolton/kallisto_results/ .
 ```
 
 
@@ -67,14 +69,14 @@ Let's get a snapshot of our data
 names(txi)
 head(txi$counts)
 ```
-If you have something that looks like this ####################################### you are good to go.
-
+If you have something that looks like the picture below you are good to go.
+![txi object](txi.jpg)
 
 **Question 2:** What do we need to use ```txtimport``` to get gene-level counts? Why might this be preferred? Look at the further reading from the lecture.
 
 ### DESeq2
 
-If ever you need help, DESeq has a great tutorial based [manual] (http://bioconductor.org/packages/release/bioc/vignettes/DESeq2/inst/doc/DESeq2.html)
+If ever you need help, DESeq has a great tutorial based [manual](http://bioconductor.org/packages/release/bioc/vignettes/DESeq2/inst/doc/DESeq2.html)
 
 The sample metadata table needs to have row names that match the colum names for the ```txi``` object.
 
