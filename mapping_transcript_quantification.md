@@ -64,7 +64,7 @@ Below is an example for a single file. You can run for each read file individual
 
 ```bash
 cd MAVI_reads/
-kallisto quant -i ../MAVI_kallisto_index -o ../kallisto_results/7_MAVI_SH_JB1 -b 30 --rf-stranded  ./7_MAVI_SH_JB1_F_trimmed.fq ./7_MAVI_SH_JB1_R_trimmed.fq
+kallisto quant -i ../MAVI_kallisto_index -o ../kallisto_results/7_MAVI_SH_JB1 -b 30 --rf-stranded  ./7_MAVI_SH_JB1_F_val_1.fq ./7_MAVI_SH_JB1_R_val_2.fq
 ```
 **Question 1:**  -o specifies what the output will be called and where it will go. What do the other options specify? (e.g., -b). Run ```kallisto quant``` or see the [manual online](https://pachterlab.github.io/kallisto/manual). 
 

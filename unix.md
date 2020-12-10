@@ -3,6 +3,7 @@
 This tutorial is based on one by Dr Nicholas Navin (MD Anderson Cancer Center, University of Texas), and another from Prof. Roger Butlin at University of Sheffield [here](https://openwetware.org/wiki/Butlin:Unix_for_Bioinformatics_-_basic_tutorial), as well as some additional material added by Dr Peri Bolton and Prof Chris Balakrishnan.
 
 [/]:# Future users of these materials might benefit from using a remote server rather than a lab server https://portal.xsede.org/allocations/education
+
 # Learning Objectives
 
 The idea is for you to familiarise yourself with basic unix and some things we commonly use in bioinformatics. This will hopefully give you a solid foundation for the rest of this course, and for your future in genomic analysis. 
@@ -46,7 +47,7 @@ If you are on Mac you'll just need to open your ```Terminal```
 * Even though I’ll show you how to transfer files using the command line, GUI ftp software are convenient (Cyberduck for macs, Filezilla, I think works on windows). (Again, a true Unix geek would frown on such things)
 * you can use up and down arrows to scroll through previous commands 
 * You can use ```tab``` to auto-complete names that are already in the system (This is useful for long filenames!)
-
+* If you get stuck, Software Carpentry offers a neat [reference](https://swcarpentry.github.io/shell-novice/reference) for some basic unix commands. 
 
 ## Introduction to Unix
 
@@ -325,7 +326,7 @@ grep "GAATTC" chr1.fna | wc -l
 The pipe `|` takes the **Standard output** or `stdout` from the previous commands, and performs another command on it. In this case, we ran the search, then we used `wc -l` to count the number of instances of our search term.
 We use `-l` because we know that `grep` prints the line that contains our search term. 
 
-**Question 6:**Can you think of a reason why this is NOT the best way to find a restriction enzyme site (hint: think about what might happen at the end of line)?
+**Question 6:** Can you think of a reason why this is NOT the best way to find a restriction enzyme site (hint: think about what might happen at the end of line)?
 
 We can also specify that we want to return everything but the search string. For example, we could count the number of nucleotides in the file.
 
