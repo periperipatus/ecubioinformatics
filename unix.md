@@ -2,6 +2,7 @@
 
 This tutorial is based on one by Dr Nicholas Navin (MD Anderson Cancer Center, University of Texas), and another from Prof. Roger Butlin at University of Sheffield [here](https://openwetware.org/wiki/Butlin:Unix_for_Bioinformatics_-_basic_tutorial), as well as some additional material added by Dr Peri Bolton and Prof Chris Balakrishnan.
 
+[/]:# Future users of these materials might benefit from using a remote server rather than a lab server https://portal.xsede.org/allocations/education
 # Learning Objectives
 
 The idea is for you to familiarise yourself with basic unix and some things we commonly use in bioinformatics. This will hopefully give you a solid foundation for the rest of this course, and for your future in genomic analysis. 
@@ -262,7 +263,7 @@ Let's do some more basic commands using some genome data. We can download a .zip
 ```bash
 curl <GET URL FROM YOUR INSTRUCTOR> -o Archive.zip -J -L -k
 ```
-[/]:# I am using a different version of this from what was originally provided in the Texas Tutorial. I am hosting on my Google Drive but won't forever.  
+[/]:# I am using a different version of this from what was originally provided in the Texas Tutorial. I am hosting on my Dropbox but won't forever.  
 
 You should see a ```.zip``` file in your directory now. You need to ```unzip``` it
 

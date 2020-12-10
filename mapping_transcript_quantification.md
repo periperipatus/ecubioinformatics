@@ -1,14 +1,26 @@
-#1. Transcript quantification using Kallisto
+# Read Mapping and Quantification
+
+This tutorial was conceived by Chris Balakrishnan and further modified by Peri Bolton.
+
+# Table of Contents
+
+* [Transcript quantification using Kallisto](#transcript-quantification-using-kallisto)
+	* [Indexing the transcriptome](#indexing-the-transcriptome)
+	* [Quantify Reads](#quantify-reads)
+* [Splice-aware mapping with STAR](#splice-aware-mapping-with-star)
+
+# Transcript quantification using Kallisto
+
+## Index the transcriptome
 
 Today we are going to quantify our reads with [Kallisto](https://pachterlab.github.io/kallisto/about).
 It is a pseudo-alignment program for rapid quantification of transcripts. It is paired with R package [Sleuth](https://pachterlab.github.io/sleuth/about) for analysis of differential expression, but its output can be used with anything.
 ```Salmon``` is another commonly used transcript quantification tool. These are both integrated into R package ```tximport``` for use in downstream differential expression analysis. 
 
-## 1.1 Index the transcriptome
 
 To be able to quantify the reads, we need a transcriptome. This is a fasta file that contains all the transcript isoforms known for an organism and/or tissue.
 
-We have a *de novo* transcriptome for the golden-collared manakin *Manacus vitellinus*, assembled using [Trinity]((https://github.com/trinityrnaseq/trinityrnaseq/wiki).
+We have a *de novo* transcriptome for the golden-collared manakin *Manacus vitellinus*, assembled using [Trinity](https://github.com/trinityrnaseq/trinityrnaseq/wiki)
 
 Make sure that you are in ```~/<YOUR DIR>/``` on the server before we start. 
 
@@ -38,8 +50,13 @@ now let's make a directory to put our results into
 
 mkdir ../kallisto_results
 ```
+<br/>
+<div align="right">
+    <b><a href="#table-of-contents">^ back to TOC</a></b>
+</div>
+<br/>
 
-## 1.2 Quantify reads
+## Quantify reads
 
 Now that you've created the index, you can quantify transcript abundance.
 Below is an example for a single file. You can run for each read file individually (using tab to autocomplete for correct file names), or you can build it into a loop. 
@@ -77,15 +94,21 @@ Press ctrl X to exit, and save the files as ```MAVI_samples.txt```
 
 Tomorrow we will analyse the results from the full dataset.
 
-# 2. Splice-aware mapping with STAR
+<br/>
+<div align="right">
+    <b><a href="#table-of-contents">^ back to TOC</a></b>
+</div>
+<br/>
+
+# Splice-aware mapping with STAR
 
 If you are working on species with a genome, you can also do splice aware mapping.
 Some commonly used splice-aware aligners are [STAR](https://github.com/alexdobin/STAR) and [HISAT2](http://daehwankimlab.github.io/hisat2/about/).
-Here we are going to use STAR (Spliced Transcripts Alignment to a Reference) to map our Manacus reads to the reference genome (Yes, I lied above, we have a genome assembly). 
+Here we are going to use STAR (Spliced Transcripts Alignment to a Reference) to map our *Manacus* reads to the reference genome (Yes, I lied above, we have a genome assembly). 
 
 
 Just like ```kallisto```, the ```STAR``` aligner needs to make a genome index so that it can efficiently access the genome. 
-However, STAR is a little slow at doing the index. So genome index has already been made for you here ```~/Bioinformatics_Workshop/pfil_genome```
+However, STAR is a little slow at doing the index. So genome index has already been made for you here ```~/Bioinformatics_Workshop/mavi_genome```
 
 Here's the code used to arrive at this point. 
 
@@ -109,8 +132,13 @@ STAR --runThreadN 50 \
 
 #this took about 20 min
 ```
-**Question 2:** If you wanted to download the transcripts for a transcriptome based quantification (like with Kallisto) which file would you download from GenBank?
+
+When running 
+
+**Question 2:** If you wanted to download the transcripts for a transcriptome based quantification (like with Kallisto) which file would you download from the [GenBank RefSeq Assembly](https://www.ncbi.nlm.nih.gov/assembly/GCF_001715985.3)?
+
 **Question 3:** What does the ```--sjdbOverhang``` argument do?
+
 **Question 4:** What do the \ do in the code?
 
 Now, you can run one of the trimmed fastqs from before.
@@ -125,8 +153,6 @@ STAR --genomeDir ~/Bioinformatics_Workshop/mavi_genome/mavi_index/ \
 --outSAMtype BAM SortedByCoordinate \
 --outSAMattributes Standard \
 --quantMode GeneCounts &
-
-#took approximately 2  minutes. 
 ```
 
 **Question 5:** What do the different arguments do in this? refer to the STAR manual
@@ -163,8 +189,46 @@ Don't worry that there are a lot of zeros - don't forget you're using a truncate
 
 **Question 10:** Other aligners, such as ```HISAT2``` do not provide any counts for reads against the gene models in the reference. How would you go about getting these counts?
 
+<br/>
+<div align="right">
+    <b><a href="#table-of-contents">^ back to TOC</a></b>
+</div>
+<br/>
+
+## Alignment QC
+
+Now, let's use `qualimap` to have a look at our alignment. 
+
+Let's make a new directory for our quality reports and then run the program. 
+
+```bash
+mkdir qc
+
+qualimap rnaseq \
+-outdir qc/7_MAVI_SH_JB1_F_quali \
+-a proportional \
+-bam 7_MAVI_SH_JB1Aligned.sortedByCoord.out.bam \
+-p strand-specific-reverse \
+-gtf ~/Bioinformatics_Workshop/mavi_genome/GCF_001715985.3_ASM171598v3_genomic.gtf \
+--java-mem-size=8G
+```
+Download the all the results to your desktop to view. This time you need to download the whole folder.
+
+```bash
+scp -r -P 1200 ngsclass@<IP.ADRESS>:~/<YOURDIR>/alignments/qc/7_MAVI_SH_JB1_F_quali/ .
+```
+
+**Question 11:** what does the `-r` flag do?
+
+**Question 12:** Think about the quality of the mapping. Do we have good mapping rates? Why/why not? Do we have good representation in exonic regions?
+
 
 # Your Assignment
 
 Try your new knowledge on the dataset provided to you. 
 
+<br/>
+<div align="right">
+    <b><a href="#table-of-contents">^ back to TOC</a></b>
+</div>
+<br/>

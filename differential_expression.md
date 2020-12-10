@@ -13,10 +13,8 @@ To do this, open a new terminal window and navigate to to the folder you made fo
 
 copy the file and folder across. The example below is for the folder. 
 ```bash
-scp -r -P 1200 ngsclass@<IP.ADRESS>:~/Bolton/kallisto_results/ .
+scp -r -P 1200 ngsclass@<IP.ADRESS>:~/<YOURDIR>/kallisto_results/ .
 ```
-
-**Question 1:** What is different about this command vs. what we have explored earlier for ```scp```
 
 
 ## Differential Expression
@@ -61,7 +59,7 @@ Then we can use ```tximport``` to load in the data.
 txi <- tximport(files, type = "kallisto", txOut = TRUE)
 ```
 
-**Question 2:** What does the ```type=``` and ```txOut=``` arguments specify here?
+**Question 1:** What does the ```type=``` and ```txOut=``` arguments specify here?
 
 Let's get a snapshot of our data
 
@@ -72,7 +70,7 @@ head(txi$counts)
 If you have something that looks like this ####################################### you are good to go.
 
 
-**Question 3:** What do we need to use ```txtimport``` to get gene-level counts? 
+**Question 2:** What do we need to use ```txtimport``` to get gene-level counts? Why might this be preferred? Look at the further reading from the lecture.
 
 ### DESeq2
 
@@ -93,7 +91,7 @@ dds<- DESeq(dds) #runs differential expression
 ```
 Remember that DESeq runs each gene as a generalized linear model. So you can specify models in a similar way?
 
-**Question 4:** Imagine there was another variable that we needed to use to take into account gene expression according to the interest variable of tissue. How would you specify that model?
+**Question 3:** Imagine there was another variable that we needed to use to take into account gene expression according to the interest variable of tissue. How would you specify that model?
 
 Ok, now we have to extract the differential expression results from the complicated ```DESeq2``` object called ```dds``` using the wrapper function ```results()```
 
@@ -104,9 +102,11 @@ res<- res[order(res$padj),] #orders results so the most significant are at the t
 res
 ```
 
-**Question 5:** What does the ```alpha=``` argument specify? 
-**Question 6:** Why do the results need a pvalue adjustmnet?
-**Question 7:** What does the ```log2FoldChange``` column mean?
+**Question 4:** What does the ```alpha=``` argument specify? 
+
+**Question 5:** Why do the results need a pvalue adjustmnet?
+
+**Question 6:** What does the ```log2FoldChange``` column mean?
 
 For a summary of the output we can use the ```summary()``` function on the results object.
 
@@ -114,7 +114,7 @@ For a summary of the output we can use the ```summary()``` function on the resul
 summary(res)
 ````
 
-**Question 8:** How many transcripts are differentially expressed? 
+**Question 7:** How many transcripts are differentially expressed? 
 
 Now, let's plot a volcano plot. 
 
@@ -122,7 +122,7 @@ Now, let's plot a volcano plot.
 plotMA(res)
 ```
 
-**Question 9:** What do the dots represent? What are the blue ones? 
+**Question 8:** What do the dots represent? What are the blue ones? 
 
 Now, let's export these data for later.
 
@@ -156,7 +156,7 @@ We have a bunch of funny gene names at the top. Also R has introduced an X at th
 colnames(data)<- gsub("^X","", colnames(data))
 ```
 
-**Question 10:** Pick one of the LOC names from the first few rows of the data frame, and search in NCBI. Why do you think it has a name like this? What do the results on NCBI say about gene function?
+**Question 9:** Pick one of the LOC names from the first few rows of the data frame, and search in NCBI. Why do you think it has a name like this? What do the results on NCBI say about gene function?
 
 Programs like [featureCounts](http://bioinf.wehi.edu.au/featureCounts/) and [HTseq-count](https://htseq.readthedocs.io/en/release_0.11.1/count.html) will extract the gene lengths from the genome annotation information when providing you with a file like this.
 STAR's GeneCounts produces counts in the same way as default HTseq-count.
@@ -167,7 +167,7 @@ For an individual, let's look at the total counts
 sum(data$'7_MAVI_SH_JB1')
 ```
 
-**Question 11:** STAR only counts the uniquely mapped reads. Why is this number different from what we saw in the ```Log.final.out``` file?
+**Question 10:** STAR only counts the uniquely mapped reads that intersect with a gene "feature" in the annotation. Why is this number different from what we saw in the ```Log.final.out``` file?
 
 Now, let's get the data ready for entry into ```DESeq2```. It likes to have the gene names as rows only. So we need to do that, and then remove the gene names column.
 
@@ -181,8 +181,8 @@ dds<- DESeqDataSetFromMatrix(countData=data, colData=samples, design= ~ tissue)
 dds<- DESeq(dds)
 res<- results(dds, contrast=c("tissue","SH","PEC"))
 ```
-**Question 12:** What does the ```contrast``` argument do? Consider how this might be used if you have >2 levels to your interest variable?
-**Question 13:** How many significantly differentially expressed genes are there? What are the things that could contribute to it being different from the previous exercise?
+**Question 11:** What does the ```contrast``` argument do? Consider how this might be used if you have >2 levels to your interest variable?
+**Question 12:** How many significantly differentially expressed genes are there? What are the things that could contribute to it being different from the previous exercise?
 **On your own** plot an MA plot showing the genes expressed up and down.
 
 
