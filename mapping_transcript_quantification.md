@@ -149,7 +149,7 @@ mkdir ~/<YOURDIR>/alignments/
 STAR --genomeDir ~/Bioinformatics_Workshop/mavi_genome/mavi_index/ \
 --runThreadN 6 \
 --readFilesIn 7_MAVI_SH_JB1_F_val_1.fq 7_MAVI_SH_JB1_R_val_2.fq \
---outFileNamePrefix alignments/7_MAVI_SH_JB1 \
+--outFileNamePrefix ../alignments/7_MAVI_SH_JB1 \
 --outSAMtype BAM SortedByCoordinate \
 --outSAMattributes Standard \
 --quantMode GeneCounts &
