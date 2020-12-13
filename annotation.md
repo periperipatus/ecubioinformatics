@@ -9,9 +9,9 @@ This is a similar process to what would happen if you did an RNA-seq experiment 
 
 # Table of Contents
 
-* [Annotation with BLAST] (#annotation-with-blast)
-* [Ensembl BioMart] (#ensembl-biomart)
-* [Functional Enrichment] (#functional-enrichment)
+* [Annotation with BLAST](#annotation-with-blast)
+* [Ensembl BioMart](#ensembl-biomart)
+* [Functional Enrichment](#functional-enrichment)
 
 # Annotation with BLAST
 

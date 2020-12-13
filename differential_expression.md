@@ -4,11 +4,11 @@ This tutorial was originally conceived by Chris Balakrishan and has been modifie
 
 # Table of Contents
 
-* [Differential expression of transcripts from Kallisto] (#differential-expression-of-transcripts-from-kallisto)
-	* [tximport] (#tximport)
-	* [DESeq2] (#deseq2)
-* [Gene-level differential expression] (#gene-level-differential-expression)
-	* [Clustering and transformations] (#clustering-and-transformations)
+* [Differential expression of transcripts from Kallisto](#differential-expression-of-transcripts-from-kallisto)
+	* [tximport](#tximport)
+	* [DESeq2](#deseq2)
+* [Gene-level differential expression](#gene-level-differential-expression)
+	* [Clustering and transformations](#clustering-and-transformations)
 
 
 # Differential Expression of Transcripts from Kallisto
