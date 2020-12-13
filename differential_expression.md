@@ -1,3 +1,16 @@
+# Differential Expression Analysis using DESeq2
+
+This tutorial was originally conceived by Chris Balakrishan and has been modified by Peri Bolton.
+
+# Table of Contents
+
+* differential expression of transcripts from Kallisto (#differential-expression-of-transcripts-from-kallisto)
+	* tximport (#tximport)
+	* DESeq2 (#deseq2)
+* Gene-level differential expression (#gene-level-differential-expression)
+	* Clustering and transformations (#clustering-and-transformations)
+
+
 # Differential Expression of Transcripts from Kallisto
 
 Yesterday you quantified transcripts from our experiment on different muscle types to our *de novo* assembly of *Manacus vitellinus*.
@@ -41,7 +54,7 @@ setwd("C:/Users/perif/Desktop/BioinformaticsWorkshop")
 
 ### Tximport
 
-Read in the sample metadata
+Read in the sample metadata, this is the one we made on the first day!
 ```r
 samples <- read.table(file.path("MAVI_samples.txt"), header = TRUE, stringsAsFactors=FALSE)
 samples<- samples[order(samples$sample),] ## make sure the sample names are in the order a computer would read them...
@@ -74,6 +87,12 @@ If you have something that looks like the picture below you are good to go.
 
 **Question 2:** What do we need to use ```txtimport``` to get gene-level counts? Why might this be preferred? Look at the further reading from the lecture.
 
+<br/>
+<div align="right">
+    <b><a href="#table-of-contents">^ back to TOC</a></b>
+</div>
+<br/>
+
 ### DESeq2
 
 If ever you need help, DESeq has a great tutorial based [manual](http://bioconductor.org/packages/release/bioc/vignettes/DESeq2/inst/doc/DESeq2.html)
@@ -93,7 +112,7 @@ dds<- DESeq(dds) #runs differential expression
 ```
 Remember that DESeq runs each gene as a generalized linear model. So you can specify models in a similar way?
 
-**Question 3:** Imagine there was another variable that we needed to use to take into account gene expression according to the interest variable of tissue. How would you specify that model?
+**Question 3:** Imagine there is another variable (e.g. Testosterone) that we want to understand the effect of on gene expression as well as tissue. How would you specify that model?
 
 Ok, now we have to extract the differential expression results from the complicated ```DESeq2``` object called ```dds``` using the wrapper function ```results()```
 
@@ -118,7 +137,7 @@ summary(res)
 
 **Question 7:** How many transcripts are differentially expressed? 
 
-Now, let's plot a volcano plot. 
+Now, let's plot an MA plot. 
 
 ```r
 plotMA(res)
@@ -132,6 +151,13 @@ Now, let's export these data for later.
 write.csv(res, file="MAVI_results_DE_transcripts.csv", row.names=TRUE)
 ```
 
+**For Discussion:** Why might there be issues inferring differential expression of transcripts using these methods? Why would `Sleuth` be more appropriate?
+
+<br/>
+<div align="right">
+    <b><a href="#table-of-contents">^ back to TOC</a></b>
+</div>
+<br/>
 
 # Gene-level differential expression
 
@@ -169,7 +195,7 @@ For an individual, let's look at the total counts
 sum(data$'7_MAVI_SH_JB1')
 ```
 
-**Question 10:** STAR only counts the uniquely mapped reads that intersect with a gene "feature" in the annotation. Why is this number different from what we saw in the ```Log.final.out``` file?
+**Question 10:** STAR only counts the uniquely mapped reads that intersect with a gene "feature" in the annotation. Why is this number different from the total uniquely mapped reads we saw in the ```Log.final.out``` file?
 
 Now, let's get the data ready for entry into ```DESeq2```. It likes to have the gene names as rows only. So we need to do that, and then remove the gene names column.
 
@@ -181,12 +207,26 @@ library(DEseq2)
 
 dds<- DESeqDataSetFromMatrix(countData=data, colData=samples, design= ~ tissue)
 dds<- DESeq(dds)
-res<- results(dds, contrast=c("tissue","SH","PEC"))
+res<- results(dds, contrast=c("tissue","SH","PEC"), alpha=0.1)
+res<- res[order(res$padj),]
+res
+summary(res)
+
 ```
 **Question 11:** What does the ```contrast``` argument do? Consider how this might be used if you have >2 levels to your interest variable?
-**Question 12:** How many significantly differentially expressed genes are there? What are the things that could contribute to it being different from the previous exercise?
-**On your own** plot an MA plot showing the genes expressed up and down.
 
+**Question 12:** How many significantly differentially expressed genes are there? What are the things that could contribute to it being different from the previous exercise?
+
+**On your own** plot an MA plot showing the genes Log fold change against their mean count. Try a Volcano Plot too!
+
+<br/>
+<div align="right">
+    <b><a href="#table-of-contents">^ back to TOC</a></b>
+</div>
+<br/>
+
+
+## Clustering and transformations
 
 In order to run in downstream functions such as PCA plots, heatmaps and analyses such as WGCNA we need to run a transformation on the data. These remove the dependance of the variance on the mean. 
 
@@ -214,7 +254,7 @@ Note that variance stabilisation (vst) and rlog transformation are very similar.
 Now let's make a PCA plot.
 
 ```r
-plotPCA(rld, intgroup=c("tissue"))
+plotPCA(vsd, intgroup=c("tissue"))
 ```
 
 For a more flexible and easier PCA plotting you can use an R package like [PCAtools](https://github.com/kevinblighe/PCAtools). 
@@ -225,10 +265,10 @@ Now let's plot the data as a heatmap. We can look at the overal difference in ge
 install.packages("pheatmap")
 install.packages("RColorBrewer")
 
-sampleDists <- dist(t(assay(rld)))
+sampleDists <- dist(t(assay(vsd)))
 
 sampleDistMatrix <- as.matrix(sampleDists)
-rownames(sampleDistMatrix) <- paste(rld$condition, rld$type, sep="-")
+rownames(sampleDistMatrix) <- paste(vsd$condition, vsd$type, sep="-")
 colnames(sampleDistMatrix) <- NULL
 library(RColorBrewer)
 library(pheatmap)
@@ -240,7 +280,7 @@ pheatmap(sampleDistMatrix,
 		 
 ```
 
-**Question 14:** How might PCA plots and sample distance plots be used for quality control (e.g. outlier detection)?
+**Question 14:** How might PCA plots and sample distance plots be used for quality control (e.g. outlier detection)? What can be said in this instance?
 
 
 We can also plot these results according to the top most expressed genes.
@@ -251,7 +291,7 @@ select <- order(rowMeans(counts(dds,normalized=TRUE)),
 df<- samples
 rownames(df)<- df$sample
 df$sample<- NULL
-pheatmap(assay(rld)[select,],cluster_rows=FALSE, show_rownames=TRUE,
+pheatmap(assay(vsd)[select,],cluster_rows=FALSE, show_rownames=TRUE,
          cluster_cols=FALSE,annotation_col=df)
 ```
 
@@ -264,3 +304,22 @@ library(ggplot2)
 geneplot<- ggplot(acta1_exp, aes(x=tissue, y=count)) + geom_point(size=2) + labs(title=row.names(res["ACTA1",]), y="Normalised Counts") 
 geneplot
 ```
+
+
+** On your own: ** Now, plot the "top hit" (most significant gene) in our DE analysis. What is the name of this gene and what is its function?
+
+Now, let's save your results
+```r
+write.csv(res, file="MAVI_results_DE_genes.csv", row.names=TRUE)
+```
+
+<br/>
+<div align="right">
+    <b><a href="#table-of-contents">^ back to TOC</a></b>
+</div>
+<br/>
+
+
+# Assignment
+
+Now apply your new skills to your assignment data.
