@@ -163,9 +163,10 @@ write.csv(dte_hgnc, "MAVI_DTE_hcnc_names.csv")
 # Functional enrichment
 
 We can use these gene names to test for functional enrichment. Actually we could do this with zebra finch gene IDs too, just using a different software. 
-Two commonly used approaches are Gene Ontology (GO) and KEGG (Kyoto Encyclopedia of Genes and Genomes) Pathway Analysis. 
+Two commonly used approaches are Gene Ontology (GO) and KEGG (Kyoto Encyclopedia of Genes and Genomes) Pathway Analysis. Furthermore, there are many different tools for testing functional enrichment. 
+One popular R tool is `clusterProfiler`.
 
-We are going to use GOrilla for testing for GO enrichment based on rank order of p-values. 
+We are going to use web-based GOrilla for testing for GO enrichment based on rank order of p-values. 
 
 You can figure out how to use them yourself. But basically, just paste the list of differentially
 expressed genes where it is requested Using the "Gene.name" column. We will use the gene names to compare against the human database of GO terms.  Enrich amongst all GO categories
