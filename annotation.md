@@ -140,8 +140,8 @@ Each step use the R data viewer to see what the transformations have done.
 
 ```r
 biomart<- read.table("mart_export.txt", sep="\t", header=TRUE)
-biomart<- biomart %>% rename("ZEFI_name"="Transcript.stable.ID")
-biomart<- biomart %>% select(ZEFI_name, Gene.stable.ID, Gene.name) #keeping only the columns of interest
+biomart<- biomart %>% rename("ZEFI_transcript"="Transcript.stable.ID")
+biomart<- biomart %>% select(ZEFI_transcript, Gene.stable.ID, Gene.name) #keeping only the columns of interest
 
 dte_hgnc<- merge(biomart, dte_annotated, by="ZEFI_transcript") 
 dte_hgnc<- dte_hgnc[dte_hgnc$Gene.name!="",] #remove gene names with no universal gene name
