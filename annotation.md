@@ -177,7 +177,7 @@ http://cbl-gorilla.cs.technion.ac.il
 
 **Question 11:**	What GO categories are significantly enriched among differentially expressed genes according to Function? Does this make sense based on our predictions?
 
-** On your own:** Try this using the results from the gene-level differential expression analysis (the second exercise yesterday).
+**On your own:** Try this using the results from the gene-level differential expression analysis (the second exercise yesterday).
 
 <br/>
 <div align="right">
