@@ -169,6 +169,8 @@ Now, in R studio, let's look at these data.
 
 samples <- read.table(file.path("MAVI_samples.txt"), header = TRUE, stringsAsFactors=TRUE)
 data<- read.csv(file.path("bioinformatics_data","MAVI_STAR_results_compiled.csv"))
+
+
 ```
 
 Let's look at the data
@@ -197,11 +199,15 @@ sum(data$'7_MAVI_SH_JB1')
 
 **Question 10:** STAR only counts the uniquely mapped reads that intersect with a gene "feature" in the annotation. Why is this number different from the total uniquely mapped reads we saw in the ```Log.final.out``` file?
 
-Now, let's get the data ready for entry into ```DESeq2```. It likes to have the gene names as rows only. So we need to do that, and then remove the gene names column.
+Now, let's get the data ready for entry into ```DESeq2```. It likes to have the gene names as rows only. So we need to do that, and then remove the gene names column. We also want to make sure that the sample names are rownames in the `samples` data frame. These also need to be in matched order as the column names in the `data` dataframe. 
 
 ```r
 rownames(data)<- data$gene_name
 data$gene_name<- NULL
+
+rownames(samples)<- samples$sample
+samples<- samples[order(rownames(samples)),]
+data<- data[, order(colnames(data))]
 
 library(DEseq2)
 
